@@ -29,7 +29,11 @@ public class GameStateDemo extends  State {
     @Override
     protected void handleInput() {
         if (Gdx.input.justTouched()){
-            Vector3 pos = new Vector3(random.nextInt(400) + 1, random.nextInt(630) + 80, 0);
+            System.out.println("Position x clique : " + Gdx.input.getX());
+            System.out.println("Position y clique : " + Gdx.input.getY());
+            Vector3 pos = new Vector3(random.nextInt(400), random.nextInt(640), 0);
+            System.out.println("New x : " + pos.x);
+            System.out.println("New y : " + pos.y);
             circle.setPosition(pos);
         }
     }
@@ -45,6 +49,7 @@ public class GameStateDemo extends  State {
         sb.begin();
         sb.draw(rbg.getTexture(), 0, 0, ClickMoreDemo.WHIDTH, ClickMoreDemo.HEIGHT);
         sb.draw(circle.getTexture(), circle.getPosition().x, circle.getPosition().y);
+
         sb.end();
     }
 }
