@@ -13,28 +13,23 @@ import java.util.Random;
 /**
  * Created by Erwan on 21/02/2016.
  */
-public class GameStateDemo extends  State {
+public class GameStateDemo extends State {
     private Texture background;
     private SimpleCircle circle;
     private RedBackground rbg;
-    private Random random;
 
     public GameStateDemo(GameStateManager gsm) {
         super(gsm);
         rbg = new RedBackground();
-        circle = new SimpleCircle(100, 300);
-        random = new Random();
+        Vector3 pos = new Vector3(100, 300, 0);
+        circle = new SimpleCircle(pos);
     }
 
     @Override
     protected void handleInput() {
         if (Gdx.input.justTouched()){
-            System.out.println("Position x clique : " + Gdx.input.getX());
-            System.out.println("Position y clique : " + Gdx.input.getY());
-            Vector3 pos = new Vector3(random.nextInt(400), random.nextInt(640), 0);
-            System.out.println("New x : " + pos.x);
-            System.out.println("New y : " + pos.y);
-            circle.setPosition(pos);
+            this.circle.touched();
+
         }
     }
 
@@ -48,7 +43,7 @@ public class GameStateDemo extends  State {
     public void render(SpriteBatch sb) {
         sb.begin();
         sb.draw(rbg.getTexture(), 0, 0, ClickMoreDemo.WHIDTH, ClickMoreDemo.HEIGHT);
-        sb.draw(circle.getTexture(), circle.getPosition().x, circle.getPosition().y);
+        sb.draw(circle.getRegionCourante(), circle.getPosition().x, circle.getPosition().y);
 
         sb.end();
     }
