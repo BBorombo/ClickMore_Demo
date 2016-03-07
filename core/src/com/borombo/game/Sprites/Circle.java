@@ -11,6 +11,7 @@ import java.util.Random;
 public abstract class Circle {
 
     protected Vector3 position;
+    protected Vector3 size;
     protected Texture texture;
     protected boolean isTouched = false;
     protected Random random;
@@ -19,6 +20,7 @@ public abstract class Circle {
     public Circle(Vector3 pos){
         position = pos;
         random = new Random();
+        size = new Vector3(140,130,0);
     }
 
     public void update(float dt) {
@@ -27,6 +29,7 @@ public abstract class Circle {
 
     public void setPosition() {
         Vector3 pos = new Vector3(random.nextInt(340), random.nextInt(610), 0);
+
         System.out.println("Position x : " + pos.x);
         System.out.println("Position y : " + pos.y);
         position = pos;
@@ -34,6 +37,10 @@ public abstract class Circle {
 
     public Vector3 getPosition() {
         return position;
+    }
+
+    public Vector3 getSize() {
+        return size;
     }
 
     public Texture getTexture() {
